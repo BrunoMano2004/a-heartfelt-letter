@@ -14,8 +14,8 @@ import foto8 from "@/assets/foto-8.png";
 
 const polaroidsLeft = [
   { src: foto1, alt: "No museu ✨", rotation: -4 },
-  { src: foto3, alt: "Passeio no parque 🌿", rotation: 3 },
-  { src: foto5, alt: "À noite 🌙", rotation: -2 },
+  { src: foto3, alt: "Passeio de teleférico 🚡", rotation: 3 },
+  { src: foto5, alt: "Mirante 🌙", rotation: -2 },
   { src: foto7, alt: "No templo 🏯", rotation: 4 },
 ];
 
@@ -32,11 +32,11 @@ const Index = () => {
       {/* Music Toggle */}
       <MusicToggle />
 
-      {/* Main container */}
-      <div className="relative">
-        {/* Desktop: Left Polaroids */}
+      {/* Main layout with polaroids on sides */}
+      <div className="flex justify-center gap-8 xl:gap-12 2xl:gap-16">
+        {/* Desktop: Left Polaroids - scrolls with page */}
         <aside 
-          className="hidden xl:flex flex-col gap-4 fixed left-4 2xl:left-8 top-1/2 -translate-y-1/2 z-10"
+          className="hidden xl:flex flex-col gap-12 pt-24"
           aria-label="Fotos à esquerda"
         >
           {polaroidsLeft.map((photo, index) => (
@@ -47,28 +47,13 @@ const Index = () => {
               rotation={photo.rotation}
               delay={1 + index * 0.2}
               direction="left"
-              className="w-28 2xl:w-36"
+              className="w-44 2xl:w-52"
             />
           ))}
         </aside>
 
-        {/* Desktop: Right Polaroids */}
-        <aside 
-          className="hidden xl:flex flex-col gap-4 fixed right-4 2xl:right-8 top-1/2 -translate-y-1/2 z-10"
-          aria-label="Fotos à direita"
-        >
-          {polaroidsRight.map((photo, index) => (
-            <Polaroid
-              key={index}
-              src={photo.src}
-              alt={photo.alt}
-              rotation={photo.rotation}
-              delay={1.2 + index * 0.2}
-              direction="right"
-              className="w-28 2xl:w-36"
-            />
-          ))}
-        </aside>
+        {/* Center content */}
+        <div className="relative">
 
         {/* Letter Container */}
         <motion.div
@@ -167,7 +152,26 @@ const Index = () => {
               </motion.div>
             ))}
           </div>
-        </motion.div>
+          </motion.div>
+        </div>
+
+        {/* Desktop: Right Polaroids - scrolls with page */}
+        <aside 
+          className="hidden xl:flex flex-col gap-12 pt-24"
+          aria-label="Fotos à direita"
+        >
+          {polaroidsRight.map((photo, index) => (
+            <Polaroid
+              key={index}
+              src={photo.src}
+              alt={photo.alt}
+              rotation={photo.rotation}
+              delay={1.2 + index * 0.2}
+              direction="right"
+              className="w-44 2xl:w-52"
+            />
+          ))}
+        </aside>
       </div>
 
       {/* Decorative elements */}
